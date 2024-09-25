@@ -5,7 +5,7 @@
   <!-- Search & Add New Contact -->
   <div class="sm:flex  items-center sm:gap-x-9 lg:gap-x-72 relative sm:mb-0 mb-5">
     <%= form_with url: contacts_path, method: :get, local: true, class: "sm:grow sm:mb-0 mb-3 flex gap-2" do |form| %>
-      <%= form.text_field :query, placeholder: "Search by name, email, or phone", class: "border rounded-lg focus:outline-none p-3 grow" %>
+      <%= form.text_field :query, placeholder: "Search by name, email, or phone", class: "border rounded-lg focus:outline-none p-3 grow",value: params[:query] %>
       <%= form.submit "Search", class: "border border-green-500 text-green-500 hover:bg-green-50 rounded-lg py-3 px-5" %>
     <% end %>
     <%= link_to "New Contact", new_contact_path, class: "rounded-lg sm:py-3 sm:px-5 p-3 bg-blue-600 text-white sm:static sm:text-base font-medium text-sm absolute right-0" %>

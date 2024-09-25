@@ -4,9 +4,9 @@ class ContactsController < ApplicationController
   # GET /contacts or /contacts.json
   def index
     if params[:query]
-      @pagy, @contacts = pagy(Contact.search(params[:query]))
+      @pagy, @contacts = pagy(Contact.search(params[:query]).order(name: :asc))
     else
-      @pagy, @contacts = pagy(Contact.all)
+      @pagy, @contacts = pagy(Contact.all.order(name: :asc))
     end
   end
 
