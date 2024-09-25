@@ -1,0 +1,54 @@
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+  <!-- Search & Add New Contact -->
+  <div class="sm:flex  items-center sm:gap-x-9 lg:gap-x-72 relative sm:mb-0 mb-5">
+    <%= form_with url: contacts_path, method: :get, local: true, class: "sm:grow sm:mb-0 mb-3 flex gap-2" do |form| %>
+      <%= form.text_field :query, placeholder: "Search by name, email, or phone", class: "border rounded-lg focus:outline-none p-3 grow",value: params[:query] %>
+      <%= form.submit "Search", class: "border border-green-500 text-green-500 hover:bg-green-50 rounded-lg py-3 px-5" %>
+    <% end %>
+    <%= link_to "New Contact", new_contact_path, class: "rounded-lg sm:py-3 sm:px-5 p-3 bg-blue-600 text-white sm:static sm:text-base font-medium text-sm absolute right-0" %>
+  </div>
+  <!-- Contacts table with pagination -->
+  <div class="container mx-auto">
+    <h1 class="text-xl font-semibold my-4">Contacts</h1>
+    <% if @contacts.present? %>
+      <div class="overflow-x-auto">
+        <table class="min-w-full bg-white border border-gray-200">
+          <thead class="bg-gray-600 text-white font-bold tracking-widest">
+            <tr>
+              <th class="px-6 py-3 text-left text-sm uppercase  border-b">S.N.</th>
+              <th class="px-6 py-3 text-left text-sm uppercase border-b">Name</th>
+              <th class="px-6 py-3 text-left text-sm uppercase border-b">Email</th>
+              <th class="px-6 py-3 text-left text-sm uppercase    border-b">Phone Number</th>
+              <th class="px-6 py-3 text-left text-sm uppercase  border-b w-52">Actions</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <% @contacts.each_with_index do |contact, index| %>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 w-4"><%= index + 1 %></td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><%= contact.name %></td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-5S00"><%= contact.email %></td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700"><%= contact.phone_number %></td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 flex justify-between items-center w-52">
+                  <%= link_to 'View', contact_path(contact), class: "bg-green-500 text-white p-2 rounded"%>
+                  <%= link_to 'Edit', edit_contact_path(contact), class: "bg-blue-600 text-white p-2 rounded" %>
+                  <%= button_to 'Delete', contact, method: :delete, data: { turbo_confirm: "#{contact.name} will be deleted.\nAre you sure?" }, class: "text-white p-2 rounded bg-red-900" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% else %>
+      <h2 class="text-lg font-medium text-gray-600 max-w-max mx-auto mt-52">
+        No Contacts!
+      </h2>
+    <% end %>
+  </div>
+  <div class="mt-4 mr-3">
+    <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div id="<%= dom_id contact %>" class="relative shadow-lg mb-4 rounded-lg px-5 py-3">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= contact.name %>
+  </p>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Email:</strong>
+    <%= contact.email %>
+  </p>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Phone number:</strong>
+    <%= contact.phone_number %>
+  </p>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Address:</strong>
+    <%= contact.address %>
+  </p>
+  <%= link_to "Edit", edit_contact_path(@contact), class: "rounded-lg py-2 px-3 bg-blue-600 text-white inline-block font-medium text-sm absolute top-3 right-5" %>
+  <div class="flex">
+    <%= link_to "Back to contacts", contacts_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium text-pruple-500" %>
+    <div class="inline-block ml-2">
+      <%= button_to "Destroy this contact", @contact, method: :delete, form: {data: { trubo_method: :delete, turbo_confirm: "#{contact.name} will be deleted.\nAre you sure?" }}, class: "rounded-lg py-3 px-5 font-medium text-white bg-red-900" %>
+    </div>
+  </div>
+</div>
