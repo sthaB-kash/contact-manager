@@ -71,4 +71,8 @@ group :test do
   gem 'selenium-webdriver'
 end
 
+# Use .env
 gem 'dotenv-rails'
+
+# Pagination
+gem 'pagy', '~> 9.0'

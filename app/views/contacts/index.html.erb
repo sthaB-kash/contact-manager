@@ -33,5 +33,7 @@
       </table>
     </div>
   </div>
-  <!-- TODO: add pagination>
+  <div class="mt-4 mr-3">
+    <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+  </div>
 </div>
