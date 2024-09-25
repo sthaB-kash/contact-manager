@@ -35,7 +35,7 @@
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 flex justify-between items-center w-52">
                   <%= link_to 'View', contact_path(contact), class: "bg-green-500 text-white p-2 rounded"%>
                   <%= link_to 'Edit', edit_contact_path(contact), class: "bg-blue-600 text-white p-2 rounded" %>
-                  <%= button_to 'Delete', contact, method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: "text-white p-2 rounded bg-red-900" %>
+                  <%= button_to 'Delete', contact, method: :delete, data: { turbo_confirm: "#{contact.name} will be deleted.\nAre you sure?" }, class: "text-white p-2 rounded bg-red-900" %>
                 </td>
               </tr>
             <% end %>

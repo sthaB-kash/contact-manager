@@ -19,7 +19,7 @@
   <div class="flex">
     <%= link_to "Back to contacts", contacts_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium text-pruple-500" %>
     <div class="inline-block ml-2">
-      <%= button_to "Destroy this contact", @contact, method: :delete, form: {data: { trubo_method: :delete, turbo_confirm: 'are you sure?' }}, class: "rounded-lg py-3 px-5 font-medium text-white bg-red-900" %>
+      <%= button_to "Destroy this contact", @contact, method: :delete, form: {data: { trubo_method: :delete, turbo_confirm: "#{contact.name} will be deleted.\nAre you sure?" }}, class: "rounded-lg py-3 px-5 font-medium text-white bg-red-900" %>
     </div>
   </div>
 </div>
