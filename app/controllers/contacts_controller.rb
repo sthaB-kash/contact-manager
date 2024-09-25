@@ -3,7 +3,11 @@ class ContactsController < ApplicationController
 
   # GET /contacts or /contacts.json
   def index
-    @pagy, @contacts = pagy(Contact.all)
+    if params[:query]
+      @pagy, @contacts = pagy(Contact.search(params[:query]))
+    else
+      @pagy, @contacts = pagy(Contact.all)
+    end
   end
 
   # GET /contacts/1 or /contacts/1.json
